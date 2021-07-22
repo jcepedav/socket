@@ -50,7 +50,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>3.6.3</version>
+                  <version>3.6.1</version>
                 </requireMavenVersion>
               </rules>
               <fail>true</fail>
