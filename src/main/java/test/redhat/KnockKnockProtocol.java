@@ -31,8 +31,6 @@ package test.redhat;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-import java.net.*;
-import java.io.*;
 
 public class KnockKnockProtocol {
     private static final int WAITING = 0;

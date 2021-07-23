@@ -1,20 +1,14 @@
 package test.redhat;
 
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-
-/**
- * Hello world!
- */
 public final class AppKnockKnockServer {
-    private AppKnockKnockServer() {
-    }
 
-    /**
-     * Says hello to the world.
-     * @param args The arguments of the program.
-     */
     public static void main(String[] args) {
         
         if (args.length != 1) {
@@ -24,13 +18,10 @@ public final class AppKnockKnockServer {
 
         int portNumber = Integer.parseInt(args[0]);
 
-        try ( 
-            ServerSocket serverSocket = new ServerSocket(portNumber);
+        try ( ServerSocket serverSocket = new ServerSocket(portNumber);
             Socket clientSocket = serverSocket.accept();
-            PrintWriter out =
-                new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(
-                new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
         
             String inputLine, outputLine;
@@ -41,8 +32,11 @@ public final class AppKnockKnockServer {
             
             out.println(outputLine);
 
+
+
             while ((inputLine = in.readLine()) != null) {
                 outputLine = kkp.processInput(inputLine);
+                System.out.println("IN: " + inputLine + "\nOUT: " + outputLine);
                 out.println(outputLine);
                 if (outputLine.equals("Bye."))
                     break;
